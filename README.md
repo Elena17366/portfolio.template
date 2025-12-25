@@ -85,11 +85,11 @@ La selección de proyectos busca mostrar **versatilidad disciplinar** y coherenc
 - **Diseño UX / UI — Fluxio**  
   Edición y motion design con foco en ritmo y producto.
 
-- **3D — Zapatillas**  
-  Modelado, materiales y renders con dossier de proceso.
+- **3D — 30 Reasons of Type**  
+  Exploración tipográfica tridimensional.
 
-- **Diseño digital — TUI**  
-  Creatividades digitales para entorno corporativo y marketing.
+- **Diseño Web — Mr.Viguiño**  
+  Web de promoción cultural y urbana de Vigo.
 
 ---
 
