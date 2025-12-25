@@ -59,3 +59,47 @@
    ----------------------------- */
 .progress { background-color: rgba(17, 17, 17, 0.08); border-radius: 999px; overflow: hidden; }
 .progress-bar { background: rgba(17, 17, 17, 0.75); border-radius: 999px; width: 0; }
+
+/* =============================
+   ABOUT IMAGE — card style
+   sombra direccional (abajo + derecha)
+   ============================= */
+
+/* Desactivar marco editorial antiguo */
+.about-image.about-card::before {
+	display: none !important;
+}
+
+.about-image.about-card {
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg);
+	overflow: hidden; /* imagen a sangre */
+	background: transparent;
+
+	/* sombra base muy sutil */
+	box-shadow: 6px 8px 20px rgba(17, 17, 17, 0.08);
+
+	transition:
+		transform 0.35s var(--ease-out),
+		box-shadow 0.35s var(--ease-out),
+		border-color 0.35s var(--ease-out);
+
+	will-change: transform, box-shadow;
+}
+
+.about-image.about-card img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 0;
+}
+
+/* Hover solo eleva y refuerza sombra (misma dirección) */
+@media (hover: hover) and (pointer: fine) {
+	.about-image.about-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 10px 14px 35px rgba(17, 17, 17, 0.14);
+		border-color: rgba(17, 17, 17, 0.16);
+	}
+}
+

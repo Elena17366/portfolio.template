@@ -121,6 +121,11 @@
    ----------------------------- */
 .about-image { position: relative; }
 .about-image::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: var(--r-lg); z-index: -1; }
+/* Si la imagen es tarjeta, no uses el marco desplazado */
+.about-image.about-card::before {
+	display: none;
+}
+
 
 /* -----------------------------
    Contact & Footer
