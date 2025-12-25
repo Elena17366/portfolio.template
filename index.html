@@ -746,16 +746,6 @@
 	<!-- Tu JS -->
 	<script src="./assets/js/main.js"></script>
 
-	<!-- ✅ Accesibilidad: abrir modal con Enter/Espacio en tarjeta -->
-	<script>
-		document.querySelectorAll('.project-card[role="button"]').forEach((card) => {
-			card.addEventListener('keydown', (e) => {
-				if (e.key === 'Enter' || e.key === ' ') {
-					e.preventDefault();
-					card.click();
-				}
-			});
-		});
-	</script>
+	<!-- Accesibilidad: handlers de teclado movidos a assets/js/main.js -->
 </body>
 </html>

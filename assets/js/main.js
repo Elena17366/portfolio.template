@@ -1,3 +1,9 @@
+/*
+ * assets/js/main.js
+ * - Inicializa animaciones (GSAP), smooth scroll (Lenis) y mejoras de accesibilidad.
+ * - Mantener funciones init separadas para claridad y mantenimiento.
+ */
+
 (() => {
 	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -114,17 +120,33 @@
 	function initProjectCards() {
 		if (prefersReducedMotion) return;
 
-		ScrollTrigger.batch(".project-card", {
+		ScrollTrigger.batch('.project-card', {
 			onEnter: (batch) =>
 				gsap.to(batch, {
 					autoAlpha: 1,
 					y: 0,
 					duration: 0.85,
 					stagger: 0.12,
-					ease: "power2.out",
+					ease: 'power2.out',
 				}),
-			start: "top 92%",
+			start: 'top 92%',
 			once: true,
+		});
+	}
+
+	/**
+	 * Soporte de teclado para tarjetas de proyecto: abrir con Enter/Espacio.
+	 * Se centraliza en este fichero para separar comportamiento del marcado HTML.
+	 */
+	function initProjectCardKeyboardSupport() {
+		const cards = document.querySelectorAll('.project-card[role="button"]');
+		cards.forEach((card) => {
+			card.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					card.click();
+				}
+			});
 		});
 	}
 
@@ -179,6 +201,7 @@
 		initScrollReveals();
 		initSkillBars();
 		initProjectCards();
+		initProjectCardKeyboardSupport();
 		initNavbarScroll();
 		initSmoothScrollAnchors();
 
