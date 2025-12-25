@@ -173,6 +173,28 @@ html.lenis { height: auto; }
 	transform: translateY(-2px);
 	box-shadow: var(--shadow-soft);
 }
+
+/* Evitar parpadeo azul en móviles/navegadores al tocar/enfocar enlaces
+   - El tap highlight de WebKit causa un overlay azul en algunos dispositivos.
+   - Aumentamos especificidad y usamos !important para sobreescribir UA/Bootstrap si es necesario.
+*/
+.btn-primary,
+.btn-primary:link,
+.btn-primary:visited,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+	color: var(--paper) !important;
+	-webkit-tap-highlight-color: transparent !important;
+	tap-highlight-color: transparent !important;
+}
+
+/* Forzar background/border en active/visited para evitar flash de color por UA */
+.btn-primary:active,
+.btn-primary:visited {
+	background-color: #222222 !important;
+	border-color: #222222 !important;
+}
 .btn-outline { background: transparent; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: .8rem 1.4rem; font-weight: 500; transition: transform .25s var(--ease-out), background .25s var(--ease-out); }
 .btn-outline:hover { background: var(--accent-soft); transform: translateY(-2px); }
 

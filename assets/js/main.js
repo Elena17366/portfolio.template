@@ -27,10 +27,17 @@
 	let lenis = null;
 
 	if (!prefersReducedMotion && typeof Lenis !== "undefined") {
+		// Afinado para efecto "mantequilla" extremo: menor lerp y rueda más suave.
+		// Nota: si esto introduce sensación de "inercia" demasiado lenta, podemos
+		// combinar con un `duration` corto en scrollTo (ya aplicado más abajo).
 		lenis = new Lenis({
-			lerp: 0.085,          // cuanto más bajo, más “mantequilla”
-			wheelMultiplier: 0.9, // sensibilidad rueda
-			smoothTouch: false,
+			// cuanto más bajo, más "mantequilla" (0.015-0.03 para ultra-suavidad)
+			lerp: 0.02,
+			// rueda ligeramente menos sensible para evitar aceleraciones
+			wheelMultiplier: 0.65,
+			// activar suavizado y buen comportamiento táctil
+			smooth: true,
+			smoothTouch: true,
 		});
 
 		lenis.on("scroll", ScrollTrigger.update);
@@ -182,7 +189,10 @@
 
 				// ✅ si Lenis está activo, scrollea con Lenis (más suave aún)
 				if (lenis) {
-					lenis.scrollTo(target, { offset: -(navHeight + 14) });
+					// For programmatic anchors we prefer a prompt start and a modest duration
+					// to avoid the perceived "lag" introduced by very low lerp settings.
+					// Duración más corta para evitar la sensación de tener que "coger fuerza".
+					lenis.scrollTo(target, { offset: -(navHeight + 14), duration: 0.45 });
 					return;
 				}
 
