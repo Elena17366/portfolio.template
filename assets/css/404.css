@@ -1,0 +1,21 @@
+/* 404 overrides — se carga después de otros.css */
+
+/* Marca arriba izquierda: sin fondos raros, sin cápsula, sin highlight */
+.error-card .brand-mini,
+.error-card .brand-mini .mark,
+.error-card .brand-mini .name {
+	background: transparent !important;
+	box-shadow: none !important;
+	border: 0 !important;
+	color: var(--ink) !important;
+}
+
+/* Ajuste fino tipográfico (opcional) */
+.error-card .brand-mini .mark {
+	font-weight: 600;
+}
+
+/* Si “Portfolio” te quedaba con un tono extraño, lo controlas aquí */
+.error-card .brand-mini .name {
+	color: var(--muted-2) !important;
+}
