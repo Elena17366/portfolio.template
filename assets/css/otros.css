@@ -257,7 +257,7 @@ html.lenis { height: auto; }
    Contact & Footer
    ----------------------------- */
 .social-links .social { color: var(--muted); text-decoration: none; padding-bottom: 2px; transition: color .25s var(--ease-out), border-color .25s var(--ease-out); }
-.social-links .social:hover { color: var(--ink);  }
+.social-links .social:hover { color: var(--ink); border-bottom-color: rgba(17,17,17,0.35); }
 .footer { background: var(--bg); border-top: 1px solid var(--line); }
 
 /* -----------------------------
