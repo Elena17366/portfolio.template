@@ -256,8 +256,8 @@ html.lenis { height: auto; }
 /* -----------------------------
    Contact & Footer
    ----------------------------- */
-.social-links .social { color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(17,17,17,0.18); padding-bottom: 2px; transition: color .25s var(--ease-out), border-color .25s var(--ease-out); }
-.social-links .social:hover { color: var(--ink); border-bottom-color: rgba(17,17,17,0.35); }
+.social-links .social { color: var(--muted); text-decoration: none; padding-bottom: 2px; transition: color .25s var(--ease-out), border-color .25s var(--ease-out); }
+.social-links .social:hover { color: var(--ink);  }
 .footer { background: var(--bg); border-top: 1px solid var(--line); }
 
 /* -----------------------------
