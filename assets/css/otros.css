@@ -219,7 +219,7 @@ html.lenis { height: auto; }
    About / profile
    ----------------------------- */
 .about-image { position: relative; }
-.about-image::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--line); border-radius: var(--r-lg); z-index: -1; }
+.about-image::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: var(--r-lg); z-index: -1; }
 
 /* -----------------------------
    Progress / Skill bars

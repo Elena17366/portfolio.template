@@ -27,26 +27,30 @@
 	let lenis = null;
 
 	if (!prefersReducedMotion && typeof Lenis !== "undefined") {
-		// Afinado para efecto "mantequilla" extremo: menor lerp y rueda más suave.
-		// Nota: si esto introduce sensación de "inercia" demasiado lenta, podemos
-		// combinar con un `duration` corto en scrollTo (ya aplicado más abajo).
-		lenis = new Lenis({
-			// cuanto más bajo, más "mantequilla" (0.015-0.03 para ultra-suavidad)
-			lerp: 0.02,
-			// rueda ligeramente menos sensible para evitar aceleraciones
-			wheelMultiplier: 0.65,
-			// activar suavizado y buen comportamiento táctil
-			smooth: true,
-			smoothTouch: true,
-		});
+		try {
+			/**
+			 * ✅ Preset "Butter Responsive"
+			 * - Un poco más rápido al principio (mejor arranque)
+			 * - Mantiene fluidez (sin lag pesado)
+			 */
+			lenis = new Lenis({
+				lerp: 0.055,
+				wheelMultiplier: 0.9,
+				smooth: true,
+				smoothTouch: true,
+			});
 
-		lenis.on("scroll", ScrollTrigger.update);
+			lenis.on("scroll", ScrollTrigger.update);
 
-		// Lenis RAF con GSAP ticker (sincronizado)
-		gsap.ticker.add((time) => {
-			lenis.raf(time * 1000);
-		});
-		gsap.ticker.lagSmoothing(0);
+			// Lenis RAF con GSAP ticker (sincronizado)
+			gsap.ticker.add((time) => {
+				lenis.raf(time * 1000);
+			});
+			gsap.ticker.lagSmoothing(0);
+		} catch (err) {
+			console.warn("Lenis falló al inicializar. Usando scroll normal.", err);
+			lenis = null;
+		}
 	}
 
 	function initHeroAnimations() {
@@ -127,29 +131,28 @@
 	function initProjectCards() {
 		if (prefersReducedMotion) return;
 
-		ScrollTrigger.batch('.project-card', {
+		ScrollTrigger.batch(".project-card", {
 			onEnter: (batch) =>
 				gsap.to(batch, {
 					autoAlpha: 1,
 					y: 0,
 					duration: 0.85,
 					stagger: 0.12,
-					ease: 'power2.out',
+					ease: "power2.out",
 				}),
-			start: 'top 92%',
+			start: "top 92%",
 			once: true,
 		});
 	}
 
 	/**
 	 * Soporte de teclado para tarjetas de proyecto: abrir con Enter/Espacio.
-	 * Se centraliza en este fichero para separar comportamiento del marcado HTML.
 	 */
 	function initProjectCardKeyboardSupport() {
 		const cards = document.querySelectorAll('.project-card[role="button"]');
 		cards.forEach((card) => {
-			card.addEventListener('keydown', (e) => {
-				if (e.key === 'Enter' || e.key === ' ') {
+			card.addEventListener("keydown", (e) => {
+				if (e.key === "Enter" || e.key === " ") {
 					e.preventDefault();
 					card.click();
 				}
@@ -173,30 +176,28 @@
 		document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 			anchor.addEventListener("click", (e) => {
 				const targetId = anchor.getAttribute("href");
-				if (targetId === "#") return;
+				if (!targetId || targetId === "#") return;
 
 				const target = document.querySelector(targetId);
 				if (!target) return;
 
 				e.preventDefault();
 
+				// Cerrar menú mobile si está abierto (si Bootstrap existe)
 				const navbarCollapse = document.querySelector(".navbar-collapse");
-				if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+				if (navbarCollapse && navbarCollapse.classList.contains("show") && typeof bootstrap !== "undefined") {
 					bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
 				}
 
 				const navHeight = document.querySelector(".navbar")?.offsetHeight ?? 0;
 
-				// ✅ si Lenis está activo, scrollea con Lenis (más suave aún)
+				// ✅ Lenis si está activo
 				if (lenis) {
-					// For programmatic anchors we prefer a prompt start and a modest duration
-					// to avoid the perceived "lag" introduced by very low lerp settings.
-					// Duración más corta para evitar la sensación de tener que "coger fuerza".
-					lenis.scrollTo(target, { offset: -(navHeight + 14), duration: 0.45 });
+					lenis.scrollTo(target, { offset: -(navHeight + 14), duration: 0.9 });
 					return;
 				}
 
-				// fallback GSAP
+				// ✅ Fallback SIEMPRE (esto evita que “no funcione” si Lenis falla)
 				gsap.to(window, {
 					duration: 0.9,
 					scrollTo: { y: target, offsetY: navHeight + 14 },
