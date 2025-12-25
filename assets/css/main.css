@@ -1,0 +1,11 @@
+/* main.css
+   Punto de entrada: importa los archivos por responsabilidad en el orden que preserva la cascada.
+   Orden: base -> utilities -> layout -> components -> projects -> responsive
+*/
+
+@import "./base.css";
+@import "./utilities.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./projects.css";
+@import "./responsive.css";

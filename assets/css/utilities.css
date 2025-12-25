@@ -1,0 +1,20 @@
+/* utilities.css
+   Responsabilidad: clases utilitarias y helpers reutilizables (helpers de espaciado, tipografías pequeñas, sombras, lenis helpers).
+   Contenido extraído literalmente de `otros.css`. No se han cambiado selectores ni valores.
+*/
+
+/* -----------------------------
+   Utilities
+   ----------------------------- */
+.section { background: var(--bg); }
+.py-lg-6 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+.text-muted { color: var(--muted) !important; }
+.rounded-5 { border-radius: var(--r-lg) !important; }
+.shadow-soft { box-shadow: var(--shadow-soft); }
+.lead { line-height: 1.75; }
+
+/* Lenis helpers */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

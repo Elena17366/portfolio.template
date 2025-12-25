@@ -1,0 +1,11 @@
+/* responsive.css
+   Responsabilidad: media queries y ajustes responsivos.
+   Contenido extraído literalmente de `otros.css`. No se han cambiado selectores ni valores.
+*/
+
+@media (max-width: 991.98px) {
+	.modal-grid { grid-template-columns: 1fr; }
+	.modal-gallery { grid-template-columns: 1fr; }
+	.navbar .nav-link::after { display: none; }
+	.about-image::before { display: none; }
+}
