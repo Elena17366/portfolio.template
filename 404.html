@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Error 404 · E. Portfolio</title>
 
-	<!-- Bootstrap -->
+	<!-- Bootstrap (solo por si quieres mantener tipografías/espaciados cómodos) -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
 	<!-- Fonts -->
@@ -16,66 +16,275 @@
 		rel="stylesheet"
 	/>
 
-	<!-- Tu CSS principal -->
+	<!-- Tu CSS (mismo look que el portfolio) -->
 	<link rel="stylesheet" href="./assets/css/otros.css" />
 
 	<style>
-		/* 404 specific */
-		.error-page {
+		/* =========================
+		   404 — Editorial / Tarjetón
+		   ========================= */
+
+		body { background: var(--bg); }
+
+		.error-wrap {
 			min-height: 100vh;
+			display: grid;
+			place-items: center;
+			position: relative;
+			overflow: hidden;
+			padding: 6rem 1.25rem 2.5rem;
+		}
+
+		/* Fondo coherente con el hero */
+		.error-bg {
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(900px 520px at 20% 25%, rgba(17,17,17,0.07), transparent 60%),
+				radial-gradient(700px 460px at 80% 70%, rgba(17,17,17,0.06), transparent 60%),
+				linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+			z-index: 0;
+		}
+
+		/* Floating shapes (similar al hero) */
+		.floating-shapes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+		.shape { position: absolute; border-radius: 999px; filter: blur(70px); opacity: .22; background: rgba(17,17,17,0.16); }
+		.shape-1 { width: 420px; height: 420px; top: 10%; left: 12%; }
+		.shape-2 { width: 320px; height: 320px; top: 62%; right: 10%; opacity: .16; }
+		.shape-3 { width: 260px; height: 260px; bottom: 12%; left: 34%; opacity: .14; }
+
+		/* Tarjetón */
+		.error-card {
+			position: relative;
+			z-index: 2;
+			width: min(920px, 100%);
+			border-radius: var(--r-lg);
+			border: 1px solid var(--line);
+			background: rgba(255,255,255,0.72);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			overflow: hidden;
+			transform: translateY(0);
+			transition: transform .35s var(--ease-out);
+		}
+
+		/* Sombra SOLO abajo/derecha (sin “halo” arriba/izq) */
+		.error-card::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: var(--r-lg);
+			transform: translate(10px, 12px);
+			background: rgba(17,17,17,0.10);
+			filter: blur(14px);
+			z-index: -1;
+			transition: transform .35s var(--ease-out), opacity .35s var(--ease-out);
+			opacity: .65;
+		}
+
+		.error-card:hover { transform: translateY(-4px); }
+		.error-card:hover::after { transform: translate(14px, 18px); opacity: .85; }
+
+		.error-top {
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			text-align: center;
-			background: var(--bg);
+			justify-content: space-between;
+			gap: 1rem;
+			padding: 1.15rem 1.25rem;
+			border-bottom: 1px solid var(--line);
+			background: rgba(255,255,255,0.55);
 		}
 
-		.error-box {
-			max-width: 560px;
-			padding: 2rem;
+		.brand-mini {
+			display: inline-flex;
+			align-items: baseline;
+			gap: .6rem;
+			text-decoration: none;
+			color: var(--ink);
 		}
-
-		.error-code {
+		.brand-mini .mark {
 			font-family: var(--font-serif);
-			font-size: clamp(4rem, 12vw, 7rem);
-			font-weight: 600;
-			letter-spacing: -0.04em;
-			margin-bottom: 0.5rem;
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			font-size: 1.35rem;
 		}
-
-		.error-title {
-			font-family: var(--font-serif);
-			font-size: 1.6rem;
-			margin-bottom: 1rem;
-		}
-
-		.error-text {
+		.brand-mini .name {
 			color: var(--muted);
-			line-height: 1.7;
-			margin-bottom: 2rem;
+			font-weight: 500;
+			font-size: .95rem;
+		}
+
+		.badge-mini {
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			padding: .35rem .75rem;
+			font-size: .78rem;
+			letter-spacing: .12em;
+			text-transform: uppercase;
+			color: var(--muted);
+			background: rgba(255,255,255,0.45);
+		}
+
+		.error-body {
+			padding: clamp(1.4rem, 3.5vw, 2.4rem);
+			display: grid;
+			grid-template-columns: 1.15fr 0.85fr;
+			gap: 1.25rem;
+			align-items: start;
+		}
+
+		@media (max-width: 991.98px) {
+			.error-body { grid-template-columns: 1fr; }
+		}
+
+		.kicker-404 {
+			text-transform: uppercase;
+			letter-spacing: .18em;
+			font-size: .75rem;
+			color: var(--muted-2);
+			margin: 0 0 .9rem;
+		}
+
+		.code-404 {
+			font-family: var(--font-serif);
+			font-weight: 600;
+			letter-spacing: -0.05em;
+			font-size: clamp(3.2rem, 7vw, 5.2rem);
+			margin: 0 0 .35rem;
+			line-height: 1.02;
+		}
+
+		.title-404 {
+			font-family: var(--font-serif);
+			font-weight: 600;
+			letter-spacing: -0.02em;
+			font-size: 1.65rem;
+			margin: 0 0 .85rem;
+		}
+
+		.text-404 {
+			color: var(--muted);
+			line-height: 1.75;
+			margin: 0 0 1.25rem;
+			max-width: 62ch;
+		}
+
+		/* “Archivo” editorial a la derecha */
+		.aside-404 {
+			border: 1px solid var(--line);
+			border-radius: var(--r-md);
+			background: rgba(17,17,17,0.02);
+			padding: 1rem;
+		}
+
+		.aside-title {
+			font-size: .95rem;
+			letter-spacing: .02em;
+			font-weight: 600;
+			margin: 0 0 .75rem;
+		}
+
+		.map {
+			display: grid;
+			gap: .6rem;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.map a {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1rem;
+			text-decoration: none;
+			color: var(--ink);
+			padding: .75rem .85rem;
+			border-radius: 14px;
+			border: 1px solid rgba(17,17,17,0.10);
+			background: rgba(255,255,255,0.55);
+			transition: transform .25s var(--ease-out), background .25s var(--ease-out);
+		}
+
+		.map a:hover {
+			transform: translateY(-2px);
+			background: rgba(17,17,17,0.06);
+		}
+
+		.map .hint {
+			color: var(--muted-2);
+			font-size: .9rem;
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: .6rem;
+			margin-top: .35rem;
+		}
+
+		.btn-soft {
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			padding: .75rem 1.05rem;
+			background: rgba(255,255,255,0.55);
+			color: var(--ink);
+			font-weight: 500;
+			text-decoration: none;
+			transition: transform .25s var(--ease-out), background .25s var(--ease-out);
+		}
+		.btn-soft:hover { background: var(--accent-soft); transform: translateY(-2px); }
+
+		.micro-404 {
+			margin-top: 1rem;
+			color: var(--muted-2);
+			font-size: .88rem;
+		}
+
+		/* Micro animación sutil, muy “editorial” */
+		@media (prefers-reduced-motion: no-preference) {
+			.shape-1 { animation: float1 10s ease-in-out infinite; }
+			.shape-2 { animation: float2 12s ease-in-out infinite; }
+			.shape-3 { animation: float3 9s ease-in-out infinite; }
+
+			@keyframes float1 { 0%,100% { transform: translate(0,0);} 50% { transform: translate(40px,-25px);} }
+			@keyframes float2 { 0%,100% { transform: translate(0,0);} 50% { transform: translate(-35px,35px);} }
+			@keyframes float3 { 0%,100% { transform: translate(0,0);} 50% { transform: translate(28px,18px);} }
 		}
 	</style>
 </head>
 
 <body>
+	<main class="error-wrap">
+		<div class="error-bg" aria-hidden="true"></div>
 
-	<main class="error-page">
-		<div class="error-box">
-			<p class="kicker">Error</p>
-
-			<h1 class="error-code">404</h1>
-			<h2 class="error-title">Esta página no existe</h2>
-
-			<p class="error-text">
-				Parece que el contenido que buscas no está aquí.<br />
-				Quizá fue movido, cambiado o simplemente nunca existió.
-			</p>
-
-			<a href="./index.html" class="btn btn-primary btn-lg">
-				Volver al portfolio
-			</a>
+		<div class="floating-shapes" aria-hidden="true">
+			<div class="shape shape-1"></div>
+			<div class="shape shape-2"></div>
+			<div class="shape shape-3"></div>
 		</div>
-	</main>
 
-</body>
-</html>
+		<section class="error-card" aria-label="Página no encontrada">
+			<header class="error-top">
+				<a class="brand-mini" href="./index.html" aria-label="Volver a Inicio">
+					<span class="mark">E.</span>
+					<span class="name">Portfolio</span>
+				</a>
+
+				<span class="badge-mini">Archivo perdido</span>
+			</header>
+
+			<div class="error-body">
+				<div>
+					<p class="kicker-404">Error 404</p>
+					<h1 class="code-404">Página no encontrada</h1>
+					<h2 class="title-404">Te has salido del recorrido.</h2>
+
+					<p class="text-404">
+						Este enlace no lleva a ningún lugar dentro del portfolio.
+						Puede que el proyecto se haya movido, que el enlace esté mal, o que simplemente
+						estés explorando fuera del mapa (lo cual también está bien).
+					</p>
+
+					<div class="actions">
+						<a class="btn btn-primary b
