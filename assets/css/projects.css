@@ -22,7 +22,7 @@
 .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform .6s var(--ease-out); }
 .project-card:hover .card-img-wrapper img { transform: scale(1.07); }
 
-.project-card .card-body { padding: 1.25rem 1.25rem 1.35rem; display: flex; flex-direction: column; height: 100%; }
+.project-card .card-body { padding: 1.25rem 1.25rem 1.35rem; display: flex; flex-direction: column; height: 100%; margin-top: 10px;}
 .project-top { flex: 1; }
 .project-card .card-title { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.02em; margin-bottom: .55rem; }
 .project-card .card-text { line-height: 1.65; }
@@ -52,3 +52,52 @@
 .modal-link:hover { border-bottom-color: rgba(17,17,17,0.42); }
 .modal-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
 .modal-gallery img { width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--bg-alt); }
+
+
+/* -----------------------------
+   Modal gallery: click-to-zoom (lightbox)
+   ----------------------------- */
+.modal-gallery img {
+	cursor: zoom-in;
+	transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.modal-gallery img:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 14px 45px rgba(17,17,17,0.12);
+}
+
+/* Lightbox overlay (for modal gallery images) */
+.img-lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 2000; /* por encima de Bootstrap modal (1055) */
+	display: grid;
+	place-items: center;
+	padding: 2rem 1.25rem;
+	background: rgba(17,17,17,0.35);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .22s var(--ease-out), visibility .22s var(--ease-out);
+}
+
+.img-lightbox.is-open {
+	opacity: 1;
+	visibility: visible;
+}
+
+.img-lightbox__img {
+	max-width: min(880px, 92vw);
+	max-height: 82vh; /* ampliación “un poco” */
+	border-radius: var(--r-md);
+	border: 1px solid var(--line);
+	background: var(--bg-alt);
+	box-shadow: 0 30px 90px rgba(17,17,17,0.22);
+	transform: scale(0.96);
+	transition: transform .22s var(--ease-out);
+}
+
+.img-lightbox.is-open .img-lightbox__img {
+	transform: scale(1);
+}

@@ -207,7 +207,76 @@
 		});
 	}
 
-	document.addEventListener("DOMContentLoaded", () => {
+	
+	function initModalGalleryLightbox() {
+		const galleryImgs = document.querySelectorAll(".modal-gallery img");
+		if (!galleryImgs.length) return;
+
+		let lightboxEl = null;
+
+		const closeLightbox = () => {
+			if (!lightboxEl) return;
+			lightboxEl.classList.remove("is-open");
+
+			// Espera a la transición para limpiar el DOM
+			window.setTimeout(() => {
+				lightboxEl?.remove();
+				lightboxEl = null;
+			}, 220);
+		};
+
+		const openLightbox = (img) => {
+			// Si ya existe (por clicks rápidos), ciérralo primero
+			if (lightboxEl) closeLightbox();
+
+			lightboxEl = document.createElement("div");
+			lightboxEl.className = "img-lightbox";
+			lightboxEl.setAttribute("role", "dialog");
+			lightboxEl.setAttribute("aria-modal", "true");
+			lightboxEl.setAttribute("aria-label", "Vista ampliada de imagen");
+
+			const bigImg = document.createElement("img");
+			bigImg.className = "img-lightbox__img";
+			bigImg.src = img.currentSrc || img.src;
+			bigImg.alt = img.alt || "Imagen ampliada";
+			bigImg.loading = "eager";
+
+			lightboxEl.appendChild(bigImg);
+			document.body.appendChild(lightboxEl);
+
+			// Abrir (en el siguiente frame para que anime bien)
+			requestAnimationFrame(() => lightboxEl && lightboxEl.classList.add("is-open"));
+
+			// Cerrar al pinchar fuera de la imagen
+			lightboxEl.addEventListener("click", (e) => {
+				if (e.target === lightboxEl) closeLightbox();
+			});
+
+			// Cerrar con ESC
+			const onKey = (e) => {
+				if (e.key === "Escape") closeLightbox();
+			};
+			document.addEventListener("keydown", onKey, { once: true });
+		};
+
+		galleryImgs.forEach((img) => {
+			// accesible: foco + abrir con Enter/Espacio
+			img.setAttribute("tabindex", "0");
+			img.setAttribute("role", "button");
+			img.setAttribute("aria-label", (img.alt ? `Ampliar: ${img.alt}` : "Ampliar imagen"));
+
+			img.addEventListener("click", () => openLightbox(img));
+			img.addEventListener("keydown", (e) => {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					openLightbox(img);
+				}
+			});
+		});
+	}
+
+
+document.addEventListener("DOMContentLoaded", () => {
 		initHeroAnimations();
 		initScrollReveals();
 		initSkillBars();
@@ -215,6 +284,7 @@
 		initProjectCardKeyboardSupport();
 		initNavbarScroll();
 		initSmoothScrollAnchors();
+		initModalGalleryLightbox();
 
 		window.addEventListener("load", () => {
 			ScrollTrigger.refresh();
