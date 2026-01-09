@@ -1,22 +1,22 @@
-# Mi portfolio template  
-> E. Portfolio
+# E. Portfolio — Elena Talegón
 
-You can find the deployed site here:  
-🔗 https://elena17366.github.io/portfolio.template/
+🔗 **Sitio web desplegado:**  
+https://elena17366.github.io/portfolio.template/
 
 ---
 
 ## Descripción del proyecto
 
-Este proyecto consiste en el diseño y desarrollo de mi **portfolio web personal**, concebido como una pieza digital con enfoque editorial. El objetivo no es únicamente mostrar proyectos, sino construir un **relato visual coherente** que refleje mi manera de entender el diseño: claro, sensible, funcional y con intención estética.
+Este proyecto consiste en el diseño y desarrollo de mi **portfolio web personal**, concebido como una pieza digital con enfoque editorial.  
+El objetivo no es únicamente mostrar proyectos, sino construir un **relato visual coherente** que refleje mi manera de entender el diseño: claro, sensible, funcional y con intención estética.
 
-El portfolio reúne trabajos de **diseño gráfico, editorial, UX/UI y audiovisual**, y está pensado como una plataforma viva, en constante evolución, adaptable a nuevos proyectos y contextos profesionales.
+El portfolio reúne trabajos de **diseño gráfico, editorial, UX/UI y audiovisual**, y está planteado como una plataforma viva, adaptable a nuevos proyectos y contextos profesionales.
 
 ---
 
 ## Objetivos
 
-- Crear una **web personal** que represente mi identidad como diseñadora.
+- Diseñar una **web personal profesional**.
 - Presentar una **selección cuidada de proyectos** de distintas disciplinas.
 - Aplicar principios del **diseño editorial al entorno digital**.
 - Integrar animación y movimiento de forma **sutil y significativa**.
@@ -24,112 +24,100 @@ El portfolio reúne trabajos de **diseño gráfico, editorial, UX/UI y audiovisu
 
 ---
 
-## Concepto y enfoque visual
+## Tecnologías utilizadas
 
-El concepto del portfolio parte de la idea de:
-
-**El diseño como lenguaje visual, emoción y relato.**
-
-A nivel visual, el proyecto se apoya en:
-- Un **minimalismo cálido**, evitando la frialdad excesiva.
-- Uso del **blanco y tonos neutros** como espacio de respiración.
-- Jerarquías tipográficas claras inspiradas en el **diseño editorial**.
-- Ritmo visual marcado por el scroll y las animaciones progresivas.
-
-El resultado busca transmitir **calma, orden y sensibilidad**, dejando que los proyectos sean los verdaderos protagonistas.
+- **HTML5** — Estructura semántica.
+- **CSS3** — Estilos, layout y sistema visual modular.
+- **JavaScript (Vanilla)** — Interacción y comportamiento.
+- **Bootstrap 5** — Grid y componentes base.
+- **GSAP** — Animaciones y control del scroll.
+- **Lenis** — Scroll suave con fallback.
+- **Google Fonts** — Playfair Display & Poppins.
 
 ---
 
 ## Estructura del sitio
 
-El portfolio se organiza en una estructura clara y reconocible:
+- **Inicio (Hero)**  
+  Presentación del portfolio, claim conceptual y llamada a la acción.
 
-### Inicio (Hero)
-- Presentación directa del portfolio.
-- Animaciones de entrada suaves.
-- Introducción a las disciplinas trabajadas.
+- **Sobre mí**  
+  Descripción del perfil, experiencia y habilidades técnicas.
 
-### Sobre mí
-- Descripción breve de mi perfil y forma de trabajar.
-- Imagen personal integrada con enfoque editorial.
-- Barras de habilidades animadas para mostrar competencias técnicas.
+- **Proyectos**  
+  Selección de 6 proyectos con tarjetas interactivas y modales con:
+  - Descripción
+  - Rol
+  - Año
+  - Herramientas
+  - Galería visual
 
-### Proyectos
-- Selección de **6 proyectos** representativos.
-- Tarjetas interactivas con animación y hover.
-- Apertura de **modales** con información ampliada:
-  - Descripción del proyecto  
-  - Rol desempeñado  
-  - Herramientas utilizadas  
-  - Galería visual  
+- **Contacto**  
+  Acceso directo a email y redes profesionales.
 
-### Contacto
-- Llamada a la acción clara.
-- Acceso directo a email y redes profesionales.
+- **Página 404 personalizada**  
+  Mantiene la coherencia visual y facilita la navegación.
 
 ---
 
 ## Selección de proyectos
 
-La selección de proyectos busca mostrar **versatilidad disciplinar** y coherencia estética:
-
-- **Audiovisual — Moriña**  
-  Branding y packaging para un producto gastronómico contemporáneo.
+- **Audiovisual — Morriña**  
+  Proyecto de videoarte sobre memoria, identidad y paisaje.
 
 - **Editorial — Olvana**  
-  Revista wellness premium con enfoque editorial y dirección de arte.
+  Revista wellness premium con enfoque editorial.
 
 - **Branding — Identidades Cosidas**  
-  Concepto creativo y piezas gráficas para lanzamiento de marca.
+  Identidad visual para exposición artística.
 
-- **Diseño UX / UI — Fluxio**  
-  Edición y motion design con foco en ritmo y producto.
+- **Diseño UX/UI — Fluxio**  
+  Plataforma digital con enfoque curatorial.
 
 - **3D — 30 Reasons of Type**  
   Exploración tipográfica tridimensional.
 
-- **Diseño Web — Mr.Viguiño**  
+- **Diseño Web — Mr. Viguiño**  
   Web de promoción cultural y urbana de Vigo.
 
 ---
 
 ## Experiencia de usuario y accesibilidad
 
+- Navegación fluida y clara.
 - Animaciones progresivas activadas por scroll.
-- Scroll fluido para una navegación continua.
-- Modales que permiten ampliar información sin romper el flujo.
 - Soporte para navegación por teclado.
-- Adaptación a usuarios con `prefers-reduced-motion`.
-
----
-
-## Tecnologías utilizadas
-
-- **HTML5** — Estructura semántica.
-- **CSS3** — Estilos, layout y sistema visual.
-- **JavaScript** — Interacción y comportamiento.
-- **Bootstrap 5** — Grid y componentes base.
-- **GSAP** — Animaciones y control del scroll.
-- **Lenis** — Scroll suave.
-- **Google Fonts** — Playfair Display & Poppins.
-
----
-
-## Enfoque personal
-
-Este proyecto refleja mi interés por:
-- El **diseño editorial aplicado a soportes digitales**.
-- La construcción de sistemas visuales coherentes.
-- El equilibrio entre **estética y funcionalidad**.
-- El diseño entendido como una experiencia que se **lee, se recorre y se siente**.
+- Uso de `prefers-reduced-motion`.
+- Estructura semántica y textos alternativos en imágenes.
 
 ---
 
 ## Estado del proyecto
 
 Proyecto en desarrollo y mejora continua.  
-El portfolio está planteado como una base flexible que puede crecer y adaptarse con nuevos trabajos y aprendizajes.
+El portfolio está pensado como una base flexible que puede crecer con nuevos trabajos y aprendizajes.
 
 ---
 
-© 2026 — Elena Talegón . Portfolio  
+## Uso de Inteligencia Artificial
+
+En el desarrollo de este proyecto se ha implementado el uso de herramientas de **Inteligencia Artificial mediante prompts** como apoyo al proceso técnico.
+
+La IA se ha utilizado para:
+- Optimización y limpieza del código.
+- Mejora de la semántica HTML.
+- Reestructuración del código para una organización más clara y mantenible.
+- Apoyo puntual en la resolución de errores y dudas técnicas concretas.
+
+En ningún caso la inteligencia artificial ha sustituido el criterio de diseño, la toma de decisiones conceptuales ni el desarrollo final del proyecto, que han sido realizados de manera íntegra por la autora.
+
+---
+
+## Licencia
+
+Este proyecto se distribuye bajo licencia **MIT**.  
+Consulta el archivo `LICENSE` para más información.
+
+---
+
+© 2026 — Elena Talegón
